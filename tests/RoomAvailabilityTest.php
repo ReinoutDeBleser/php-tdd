@@ -6,18 +6,24 @@ use PHPUnit\Framework\TestCase;
 
 class RoomAvailabilityTest extends TestCase
 {
+    private function dataProviderForPremiumRoom() : array
+    {
+        return [
+            [true, true, true],
+            [false, false, true],
+            [false, true, true],
+            [true, false, false]
+        ];
+    }
     /**
      * function has to start with Test
+     * @dataProvider dataProviderForPremiumRoom
      */
-    public function testPremiumRoom(): void
+    public function testPremiumRoom( bool $roomVar, bool $userVar, bool $expectedOutput): void
+    {
         $room = new Room(false);
         $user = new User(false);
 
-        $this->assertTrue($room->canBook($user));
-
-        $room = new Room(true);//premium room, with no premium user
-        $user = new User(false);
-
-        $this->assertFalse($room->canBook($user));
+        $this->assertTrue($expectedoutput, $room->canBook($user));
     }
 }
