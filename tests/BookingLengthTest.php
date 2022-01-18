@@ -19,13 +19,10 @@ class BookingLengthTest extends TestCase
             [0,-4,true]
         ];
     }
-
     /**
      * function has to start with Test
      * @dataProvider dataProviderForBookingLength
      */
-
-
     public function testBookingLength(int $startVar , int $endVar, bool $expectedOutput): void
     {
         $booking = new Booking($startVar , $endVar);
