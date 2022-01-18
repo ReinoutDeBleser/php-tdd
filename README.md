@@ -11,7 +11,7 @@
 
 ## The Mission
 In the following scenario we are going to explore "Unit Tests" and Test Driven Development, feel free to ask your coach more information about this.
-Start with watching this [great youtube introduction](https://www.youtube.com/watch?v=WMqe0jkqPMQ) to the subject.
+Start with watching this [great YouTube introduction](https://www.youtube.com/watch?v=WMqe0jkqPMQ) to the subject.
 
 We are going to create a simple booking software for meeting rooms.
 You can write this in Symfony
@@ -24,7 +24,7 @@ Replaces manual testing in the browser by creating code that does so for you.
 Immediate advantages:
 
 - Automated and repeatable testing of how the code runs. 
-- Tests are way more specific and it's easier and more accurate than point-and-click testing via a GUI.
+- Tests are way more specific, and it's easier and more accurate than point-and-click testing via a GUI.
 - Basically, once you write a test to prevent a specific bug, it will prevent that bug from ever happening again long term stability is boosted massively like this. 
 
 ### What is Test Driven Development? Occam's razor of coding
@@ -46,8 +46,8 @@ This means you will be able to write tests in many languages after learning abou
 Rename the `phpunit.xml.dist` on the root to `phpunit.xml`.
 
 Always place your tests in the `tests/` directory.
-Now run `php ./vendor/bin/phpunit`, this will run all valid tests in your tests directory.
-***The first time you run this script this will also install PHPunit for you!***
+Now run `php ./vendor/bin/phpunit`, this will run all valid tests in your tests' directory.
+***The first time you run this script this will also install PHPUnit for you!***
 
 ## Must-have features 
 Create the following entities
@@ -64,23 +64,42 @@ Create the following entities
     - Start date (datetime)
     - End date (datetime)
 
-### General flow
+### General flow    how to split everything up 
 For now just create rooms directly in the db, you do not need to provide an interface for this. ✔
 
-On the homepage the user gets to see all the rooms, with a link to book a room. 
-He then selects a start and end date and time between which he wants access to the room.
-He is then charged 2 EUR for each hour he booked the room.
+Steps: 
+1. create a homepage
+2. displays all available rooms on that homepage
+3. every room needs a link to book the room.
+4. make a separate Book the room page.
+5. on the book the room page make the user select an end date and time
+6. this end date and time can only be 4 hours apart max
+7. it can also not overlap with another user having already booked the room.
+8. keeping in mind he needs to be charged 2 €/h of booking
+9. we need to check his credit before he can book. 
+10. after that check is okay they need to be charged 2 €/hour of booking.
 
-The following conditions apply:
+// On the homepage the user gets to see all the rooms, with a link to book a room. 
+// then selects a start and end date and time between which he wants access to the room.
+// He is then charged 2 EUR for each hour he booked the room.
+
+Important to check:
+
+members are the only ones eligible to book exclusive rooms;
+a room can only be booked for a max of 4 hours consecutively. 
+
+
+The following conditions apply: create unit tests for following functionality 
+the rest is just dependent on building the code 
 
 - Rooms marked as premium can only be hired for premium members
-- No room can be booked for more than 4 hours
+- No room can be booked for more than 4 hours 
 - Check if they can afford the rent for the room
 - Room can only be booked if no other User has already booked it in this time (this is the most difficult condition)
 
 ***For all these conditions try to use Test Driven Development first.***
 
-Let's do the first requirement together!
+Let's do the first requirement together! *Basic unit test example*
 
 "Rooms marked as premium can only be hired for premium members"
 
@@ -100,6 +119,7 @@ class CheckRoomAvailabilityTest extends TestCase
      * function has to start with Test
      */
     public function testPremiumRoom(): void
+    {
         $room = new Room(false);
         $user = new User(false);
 
@@ -129,7 +149,8 @@ class CheckRoomAvailabilityTest extends TestCase
     /**
      * function has to start with Test
      */
-    public function testPremiumRoom(): void
+    public function testPremiumRoom(): void;
+    {
         $room = new Room(false);
         $user = new User(false);
 
@@ -171,7 +192,7 @@ class CheckRoomAvailabilityTest extends TestCase
      * function has to start with Test
      * @dataProvider dataProviderForPremiumRoom
      */
-    public function testPremiumRoom(bool $roomVar, bool $userVar, bool $expectedOutput): void
+    public function testPremiumRoom(bool $roomVar, bool $userVar, bool $expectedOutput): void{
 
         $room = new Room($roomVar);
         $user = new User($userVar);
@@ -183,9 +204,9 @@ class CheckRoomAvailabilityTest extends TestCase
 
 ### Edge cases
 When you are done with the original requirements, start thinking about the edge cases
-- What is somebody needs all their credit to pay for a rental?
+- What if somebody needs all their credit to pay for a rental?
 - What if somebody enters an end date to start before the start date
-- What is the dates of 2 bookings match exactly.
+- What if the dates of 2 bookings match exactly.
 - What if somebody gives a negative number to addCredit (nice to have, see below)
 
 ## Nice to have

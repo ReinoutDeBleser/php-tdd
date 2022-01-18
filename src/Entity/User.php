@@ -9,11 +9,8 @@ class User
     private int $credit;
     private bool $member;
 
-    public function __construct($password, $email, $credit, $member)
+    public function __construct($member)
     {
-        $this->password = $password;
-        $this->email = $email;
-        $this->credit = $credit;
         $this->member = $member;
     }
 

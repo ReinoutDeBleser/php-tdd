@@ -9,13 +9,14 @@ class Room {
     private string $name;
     private bool $exclusive;
 
-    public function __construct(string $name, bool $exclusive)
+    public function __construct(bool $exclusive)
     {
-        $this->name = $name;
         $this->exclusive =$exclusive;
     }
-    function canBook(User $user) {
-        return ($this->isMember() && $user->isMember()) || !$this->isMember();
+
+    function canBook(User $user)
+    {
+        return ($this->isExclusive() && $user->isMember()) || !$this->isExclusive();
     }
 
     /**
