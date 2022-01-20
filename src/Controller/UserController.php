@@ -34,6 +34,6 @@ class UserController extends AbstractController
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        return new Response('Saved new product with id '.$user->getId());
+        return new Response('Saved new user with id '.$user->getId());
     }
 }
