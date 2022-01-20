@@ -67,21 +67,29 @@ Create the following entities
 ### General flow    how to split everything up 
 For now just create rooms directly in the db, you do not need to provide an interface for this. ✔
 
-Steps: 
-1. create a homepage
-2. displays all available rooms on that homepage
-3. every room needs a link to book the room.
-4. make a separate Book the room page.
-5. on the book the room page make the user select an end date and time
-6. this end date and time can only be 4 hours apart max
-7. it can also not overlap with another user having already booked the room.
-8. keeping in mind he needs to be charged 2 €/h of booking
-9. we need to check his credit before he can book. 
-10. after that check is okay they need to be charged 2 €/hour of booking.
+Steps:
+
 
 // On the homepage the user gets to see all the rooms, with a link to book a room. 
+1. create a homepage -> using rooms -> root  ✔
+2. get some data from database using Doctrine 
+3. get specific data from database and display in on /. 
+4. get array of data from database and display all of them on /
+5. add a link to separate pages -> use routing here for booking the room to those
+
 // then selects a start and end date and time between which he wants access to the room.
+6. selection forms? for the user to select and to book a room start and end:
+7. this end date and time can only be 4 hours apart max
+8. it can also not overlap with another user having already booked the room. 
+
 // He is then charged 2 EUR for each hour he booked the room.
+9. keeping in mind he needs to be charged 2 €/h of booking
+10. we need to check his credit before he can book. 
+11. after that check is okay they need to be charged 2 €/hour of booking.
+
+
+
+
 
 Important to check:
 

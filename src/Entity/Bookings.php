@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-class Booking
+class Bookings
 {
     public int $start;
     public int $end;

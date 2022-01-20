@@ -2,7 +2,7 @@
 
 namespace App\Tests;
 
-use App\Entity\Booking;
+use App\Entity\Bookings;
 use PHPUnit\Framework\TestCase;
 
 class BookingLengthTest extends TestCase
@@ -25,7 +25,7 @@ class BookingLengthTest extends TestCase
      */
     public function testBookingLength(int $startVar , int $endVar, bool $expectedOutput): void
     {
-        $booking = new Booking($startVar , $endVar);
+        $booking = new Bookings($startVar , $endVar);
         if (($booking->end - $booking->start) <= 4)
         {
             $this->assertTrue($expectedOutput && ($booking->end - $booking->start) <= 4 );
