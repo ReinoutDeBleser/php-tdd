@@ -50,19 +50,19 @@ Now run `php ./vendor/bin/phpunit`, this will run all valid tests in your tests'
 ***The first time you run this script this will also install PHPUnit for you!***
 
 ## Must-have features 
-Create the following entities
-- User
-    - password, email (if working with the login)
-    - username OR email field (you can choose)
-    - credit (integer, start credit 100)
-    - premiumMember (bool, default false)
-- Room
-    - name
-    - onlyForPremiumMembers (bool, default false)
-- Bookings
-    - Relation to room & User
-    - Start date (datetime)
-    - End date (datetime)
+Create the following entities ✔
+- User ✔
+    - password, email (if working with the login) ✔
+    - username OR email field (you can choose) ✔ 
+    - credit (integer, start credit 100) ✔ 
+    - premiumMember (bool, default false) ✔
+- Room ✔
+    - name ✔
+    - onlyForPremiumMembers (bool, default false) ✔
+- Bookings ✔
+    - Relation to room ✔ & User ✔
+    - Start date (datetime) ✔
+    - End date (datetime) ✔
 
 ### General flow    how to split everything up 
 For now just create rooms directly in the db, you do not need to provide an interface for this. ✔
@@ -72,7 +72,7 @@ Steps:
 
 // On the homepage the user gets to see all the rooms, with a link to book a room. 
 1. create a homepage -> using rooms -> root  ✔
-2. get some data from database using Doctrine 
+2. get some data from database using Doctrine   
 3. get specific data from database and display in on /. 
 4. get array of data from database and display all of them on /
 5. add a link to separate pages -> use routing here for booking the room to those

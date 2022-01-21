@@ -46,9 +46,15 @@ class Room
         return $this;
     }
 
-    public function getOnlyForPremiumMembers(): ?bool
+    public function getOnlyForPremiumMembers(): string
     {
-        return $this->onlyForPremiumMembers;
+        if ($this->onlyForPremiumMembers === false) {
+            return " available to all";
+        }
+        else {
+            return " only available for members";
+        }
+
     }
 
     public function setOnlyForPremiumMembers(bool $onlyForPremiumMembers): self

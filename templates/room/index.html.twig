@@ -16,5 +16,18 @@
         <li>Your controller at <code><a href="{{ 'C:/Users/Reinout/Documents/BeCode/php-tdd/src/Controller/RoomController.php'|file_link(0) }}">src/Controller/RoomController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'C:/Users/Reinout/Documents/BeCode/php-tdd/templates/room/index.html.twig'|file_link(0) }}">templates/room/index.html.twig</a></code></li>
     </ul>
+
+    <ul>
+
+        {% for room in rooms %}
+
+            <h2> This is room {{ room.id|e }}</h2>
+            <li> The name of the room is {{ room.name|e }}</li>
+            <li> the room is  {{ room.onlyForPremiumMembers|e }}</li>
+            <br><br>
+{#            <li> </li>#}
+        {% endfor %}
+    </ul>
+
 </div>
 {% endblock %}
